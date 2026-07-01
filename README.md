@@ -31,7 +31,7 @@ The dataset contains monthly financial snapshots for simulated users. It specifi
 
 Here is the DDL (Data Definition Language) used to create the table in PostgreSQL:
 
-```sql
+``sql
 CREATE TABLE user_finances (
     id SERIAL PRIMARY KEY,
     snapshot_date DATE NOT NULL,
@@ -44,4 +44,13 @@ CREATE TABLE user_finances (
     credit_score INT CHECK (credit_score >= 300 AND credit_score <= 850),
     debt_to_income_ratio NUMERIC(3, 2),
     loan_payment NUMERIC(10, 2)
-);
+);``
+
+
+💡 **Potential Use Cases Explored**
+1. Risk & Fraud Detection: Creating flags for abnormal spending patterns.
+
+2. Creditworthiness: Segmenting users into risk tiers based on synthetic credit scores and debt ratios.
+
+3. Budget Forecasting: Identifying users who consistently miss their budget goals.
+
