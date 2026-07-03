@@ -1,4 +1,4 @@
-BEGIN;
+
 CREATE TABLE finance (
 	Date DATE,
 	user_id INT,
@@ -27,3 +27,4 @@ CREATE TABLE finance (
 	savings_goal_met INT
 	
 );
+select * from finance;
