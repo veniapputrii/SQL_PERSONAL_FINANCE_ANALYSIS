@@ -28,3 +28,9 @@ CREATE TABLE finance (
 	
 );
 select * from finance;
+ALTER TABLE finance
+ADD COLUMN goal_saving_month INT
+GENERATED ALWAYS AS (monthly_income * savings_rate) STORED;
+select * from finance 
+where income_type = 'Salary';
+
