@@ -5,23 +5,46 @@ This project leverages **PostgreSQL** to analyze and extract insights from the [
 
 **Goal:** To demonstrate advanced SQL querying skills—including Window Functions, Common Table Expressions (CTEs), Aggregations, and Data Modeling—by exploring financial habits, anomaly detection, and economic impact on personal wealth.
 
-## 📊 Dataset Description
-The dataset contains monthly financial snapshots for simulated users. It specifically simulates three economic environments that affect user behavior:
-* **Normal:** Stable financial behavior.
-* **Inflation:** Higher expenses, increased stress, reduced savings.
-* **Recession:** Lower income, rising debt ratios, possible fraudulent behavior.
+## 📊 Dataset Dictionary
 
-### Key Features (Columns)
-* `date`: Month and year of the financial snapshot.
-* `user_id`: Unique identifier for the user.
-* `monthly_income`: Total monthly income (USD).
-* `monthly_expense_total`: Total expenses for the given month.
-* `savings_rate`: Fraction of income saved (0 to 1).
-* `budget_goal`: User-defined budget target for that month.
-* `financial_scenario`: Economic state (Normal, Inflation, or Recession).
-* `credit_score`: Synthetic credit score (300–850).
-* `debt_to_income_ratio`: Debt-to-income ratio (0.1 to 0.6).
-* `loan_payment`: Monthly loan repayment amount.
+This dataset simulates monthly financial records for 3,000 users. Here is a simple breakdown of what each column represents:
+
+### 🆔 Context & Identification
+* **`Date`**: The month and year of the financial record.
+* **`user_id`**: A unique ID assigned to each person.
+* **`financial_scenario`**: The state of the economy during that month (*Normal*, *Inflation*, or *Recession*).
+
+### 💵 Income & Spending
+* **`income_type`**: The source of the user's money (e.g., salary, freelance, hourly).
+* **`monthly_income`**: Total money earned in that month.
+* **`monthly_expense_total`**: Total money spent across everything in that month.
+* **`essential_spending`**: Money spent on basic survival needs (groceries, utilities, healthcare).
+* **`discretionary_spending`**: Money spent on personal "wants" (dining out, hobbies, vacations).
+* **`rent_or_mortgage`**: Monthly housing payment.
+* **`subscription_services`**: Recurring automated costs (streaming services, gym memberships).
+* **`category`**: The primary spending or budgeting category for that record.
+
+### 🏦 Savings & Investments
+* **`budget_goal`**: The target spending or saving limit set by the user.
+* **`savings_rate`**: The percentage of income the user saves instead of spends.
+* **`actual_savings`**: The actual dollar amount successfully saved that month.
+* **`savings_goal_met`**: Shows if the user reached their savings target (`1` = Yes, `0` = No).
+* **`emrgency_fund`**: Total cash saved in a safety net for unexpected emergencies.
+* **`investment_amount`**: Money put toward wealth-building (stocks, retirement, mutual funds).
+
+### 💳 Credit, Debt & Transactions
+* **`credit_score`**: The user's credit rating (300–850). Higher scores mean better credit health.
+* **`debt_to_income_ration`**: The percentage of monthly income used to pay off debt.
+* **`loan_payment`**: Fixed monthly payments for debts (car loans, student loans, etc.).
+* **`transaction_count`**: The total number of individual purchases or bank transactions made.
+
+### 📈 Financial Health & Risk
+* **`cash_flow_status`**: Shows if income is higher than expenses (*Positive*, *Negative*, or *Neutral*).
+* **`financial_stress_level`**: The user's level of financial anxiety (*Low*, *Medium*, or *High*).
+* **`financial_advice_score`**: A rating of how well the user follows good personal finance habits.
+* **`fraud_flag`**: Detects suspicious or abnormal transaction activity (`1` = Suspicious, `0` = Normal).
+
+
 
 *(Note: This is a synthetic dataset built for research and experimentation, not real-world financial decision-making).*
 
