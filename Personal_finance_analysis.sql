@@ -1,4 +1,5 @@
 
+
 CREATE TABLE finance (
 	Date DATE,
 	user_id INT,
@@ -34,3 +35,19 @@ GENERATED ALWAYS AS (monthly_income * savings_rate) STORED;
 select * from finance 
 where income_type = 'Salary';
 
+select
+	user_id,
+	date,
+	monthly_income,
+	monthly_expense_total,
+	discretionary_spending,
+	essential_spending,
+	CASE
+		WHEN monthly_expense_total > (monthly_income * 1.5) THEN 'CRITICAL RISK'
+		WHEN discretionary_spending > (essential_spending *2) THEN 'HIGH RISK'
+		ELSE 'Normal'
+	END AS risk_flag
+FROM finance
+WHERE monthly_expense_total > (monthly_income * 1.5) 
+   OR discretionary_spending > (essential_spending * 2)
+ORDER BY monthly_expense_total DESC;
