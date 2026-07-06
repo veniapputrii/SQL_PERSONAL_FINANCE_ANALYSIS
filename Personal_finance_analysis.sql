@@ -1,5 +1,7 @@
 
 
+
+
 CREATE TABLE finance (
 	Date DATE,
 	user_id INT,
@@ -51,3 +53,27 @@ FROM finance
 WHERE monthly_expense_total > (monthly_income * 1.5) 
    OR discretionary_spending > (essential_spending * 2)
 ORDER BY monthly_expense_total DESC;
+
+WITH UserSpendingStats AS (
+    SELECT 
+        user_id,
+        date,
+        monthly_expense_total,
+        -- Calculates the average expense for this specific user across all months
+        ROUND(AVG(monthly_expense_total) OVER(PARTITION BY user_id), 2) AS user_avg_expense
+    FROM user_finances
+)
+SELECT 
+    user_id,
+    date,
+    monthly_expense_total,
+    user_avg_expense,
+    -- Calculates the percentage increase above their personal average
+    ROUND(((monthly_expense_total - user_avg_expense) / user_avg_expense) * 100, 2) AS pct_above_average,
+    CASE 
+        WHEN monthly_expense_total > (user_avg_expense * 1.60) THEN 'SPIKE FLAG: Spending 60%+ above personal norm'
+        ELSE 'Normal'
+    END AS spending_anomaly_flag
+FROM UserSpendingStats
+WHERE monthly_expense_total > (user_avg_expense * 1.60)
+ORDER BY pct_above_average DESC;
