@@ -33,6 +33,7 @@ GENERATED ALWAYS AS (monthly_income * savings_rate) STORED;
 select * from finance 
 where income_type = 'Salary';
 
+--Use rules function to label the riskers--
 select
 	user_id,
 	date,
