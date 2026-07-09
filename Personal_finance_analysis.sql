@@ -1,3 +1,4 @@
+
 CREATE TABLE finance (
 	Date DATE,
 	user_id INT,
@@ -33,7 +34,6 @@ GENERATED ALWAYS AS (monthly_income * savings_rate) STORED;
 select * from finance 
 where income_type = 'Salary';
 
---Use rules function to label the riskers--
 select
 	user_id,
 	date,
@@ -51,6 +51,15 @@ WHERE monthly_expense_total > monthly_income
    OR discretionary_spending > essential_spending
 ORDER BY monthly_expense_total DESC;
 
-
+select 
+	user_id,
+	credit_score,
+	debt_to_income_ratio
+	CASE
+		WHEN credit_score >= 700 AND debt_to_income_ratio >= 0.50 THEN 'High Risk'
+		WHEN credit_score >= 660 AND credit_score < 700 AND debt_to_income_ratio >= 0.36 AND debt_to_income_ratio < 0.50 THEN 'Moderate Risk'
+		ELSE 'Low Risk'
+	END AS risk_tier
+FROM finance;
 
 
