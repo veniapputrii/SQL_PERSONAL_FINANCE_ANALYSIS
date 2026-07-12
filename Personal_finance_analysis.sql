@@ -33,7 +33,7 @@ ADD COLUMN goal_saving_month INT
 GENERATED ALWAYS AS (monthly_income * savings_rate) STORED;
 select * from finance 
 where income_type = 'Salary';
-
+--RISK AND FRAUD DETECTION--
 select
 	user_id,
 	date,
